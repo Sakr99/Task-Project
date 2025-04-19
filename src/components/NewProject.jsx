@@ -2,7 +2,7 @@ import Input from "./Input";
 import React, { useRef } from "react";
 import Modal from "./Modal";
 
-function NewProject({ onAdd , onCansel}) {
+function NewProject({ onAdd, onCansel }) {
   const title = useRef();
   const description = useRef();
   const dueData = useRef();
@@ -21,6 +21,7 @@ function NewProject({ onAdd , onCansel}) {
       modal.current.open();
       return;
     }
+
     onAdd({
       title: enteredTitle,
       description: enteredDescription,
@@ -33,34 +34,38 @@ function NewProject({ onAdd , onCansel}) {
       <Modal ref={modal} buttonCaption="Okay">
         <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
         <p className="text-stone-600 mb-4">
-          Opos ... looke like you forgot to enter a value.
+          Oops ... looks like you forgot to enter a value.
         </p>
         <p className="text-stone-600 mb-4">
-          please make sureyou provide a valid value for every input field.
+          Please make sure you provide a valid value for every input field.
         </p>
       </Modal>
-      <div className="w-[35rem] mt-16">
-        <menu className="flex items-center justify-end gap-4 my-4">
-          <li>
-            <button className="px-6 py-2 bg-stone-200 rounded-md text-stone-800 hover:bg-stone-400 hover:text-stone-950" onClick={onCansel}>
+      <div className="w-full max-w-xl mx-auto px-4 mt-16">
+        <Input type="text" ref={title} label="Title" />
+        <Input type="text" ref={description} label="Description" textarea />
+        <Input type="date" ref={dueData} label="Due Date" />
+        <menu className="flex flex-col sm:flex-row items-center justify-end gap-4 my-4">
+          <li className="w-full sm:w-auto">
+            <button
+              className="w-full sm:w-auto px-6 py-2 bg-stone-200 rounded-md text-stone-800 hover:bg-red-700 hover:text-stone-50"
+              onClick={onCansel}
+            >
               Cancel
             </button>
           </li>
-          <li>
+          <li className="w-full sm:w-auto">
             <button
-              className="px-6 py-2 bg-stone-800 rounded-md hover:bg-stone-950 text-stone-50"
+              className="w-full sm:w-auto px-6 py-2 bg-stone-800 rounded-md hover:bg-green-700 text-stone-50"
               onClick={handleSave}
             >
               Save
             </button>
           </li>
         </menu>
-        <Input type="text" ref={title} label="Title" />
-        <Input type="text" ref={description} label="Description" textarea />
-        <Input type="date" ref={dueData} label="Due Data" />
       </div>
     </>
   );
 }
+
 
 export default NewProject;

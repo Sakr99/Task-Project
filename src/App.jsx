@@ -99,7 +99,7 @@ function App() {
   console.log(projectState);
   return (
     <>
-      <main className="h-screen my-8 flex gap-8">
+      <main className="min-h-screen my-8 flex flex-col md:flex-row gap-4 md:gap-8 px-4">
         <ProjectSidebar
           onSelectProject={handleSelectProject}
           projects={projectState.projects}
